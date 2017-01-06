@@ -207,7 +207,7 @@ spec_meta_bind <- list(
   #' Binding of character values.
   bind_character = function(ctx) {
     with_connection({
-      test_select_bind(con, ctx$tweaks$placeholder_pattern, texts)
+      test_select_bind(con, ctx$tweaks$placeholder_pattern, texts, type = "character(12)")
     })
   },
 
