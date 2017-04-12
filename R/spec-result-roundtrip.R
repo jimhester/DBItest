@@ -301,7 +301,7 @@ test_select <- function(con, ..., .dots = NULL, .add_null = "none",
     if (is.function(value_or_testfun)) {
       eval(bquote(expect_true(value_or_testfun(rows[1L, .(i)]))))
     } else {
-      eval(bquote(expect_identical(rows[1L, .(i)], .(value_or_testfun))))
+      eval(bquote(expect_equal(rows[1L, .(i)], .(value_or_testfun))))
     }
   }
 

@@ -73,5 +73,18 @@ expect_equal_df <- function(actual, expected) {
   actual <- unrowname(actual[order_actual, ])
   expected <- unrowname(expected[order_expected, ])
 
-  expect_identical(actual, expected)
+  expect_equal(actual, expected)
+}
+
+#' @export
+compare.integer64 <- function(x, y) {
+  testthat:::comparison(x == y, sprintf("target is %s, current is %s", as.character(x), as.character(y)))
+}
+
+#' @export
+all.equal.integer64 <- function(target, current, ..., check.attributes = FALSE) {
+  if (length(target) == 0 || length(current) == 0) {
+    return(identical(length(target), length(current)))
+  }
+  target == current
 }

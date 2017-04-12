@@ -18,7 +18,7 @@ test_select_bind_one <- function(con, placeholder_fun, values,
                                  query = TRUE,
                                  transform_input = as.character,
                                  transform_output = function(x) trimws(x, "right"),
-                                 expect = expect_identical,
+                                 expect = expect_equal,
                                  extra = "none") {
   bind_tester <- BindTester$new(con)
   bind_tester$placeholder <- placeholder_fun(length(values))
@@ -75,7 +75,7 @@ BindTester <- R6::R6Class(
     type = "character(10)",
     query = TRUE,
     transform = list(input = as.character, output = function(x) trimws(x, "right")),
-    expect = list(fun = expect_identical),
+    expect = list(fun = expect_equal),
     extra_obj = NULL
   ),
 

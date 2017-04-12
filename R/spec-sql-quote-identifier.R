@@ -69,12 +69,12 @@ spec_sql_quote_identifier <- list(
       query <- paste0("SELECT 1 AS", simple)
       rows <- dbGetQuery(con, query)
       expect_identical(names(rows), "simple")
-      expect_identical(unlist(unname(rows)), 1L)
+      expect_equal(rows[[1]], 1L)
 
       #' and `SELECT * FROM (SELECT 1) ...`.
       query <- paste0("SELECT * FROM (SELECT 1) ", simple)
       rows <- dbGetQuery(con, query)
-      expect_identical(unlist(unname(rows)), 1L)
+      expect_equal(rows[[1]], 1L)
     })
   },
 
@@ -145,7 +145,7 @@ spec_sql_quote_identifier <- list(
                          as.character(empty), as.character(with_space),
                          as.character(with_dot), as.character(with_comma),
                          as.character(with_quote)))
-      expect_identical(unlist(unname(rows)), 1:10)
+      expect_equal(vapply(unname(rows), as.numeric, numeric(1)), 1:10)
     })
   },
 

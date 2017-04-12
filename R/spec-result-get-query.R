@@ -18,7 +18,7 @@ spec_result_get_query <- list(
       query <- "SELECT 1 as a"
 
       rows <- dbGetQuery(con, query)
-      expect_identical(rows, data.frame(a=1L))
+      expect_equal(rows, data.frame(a=1L))
     })
   },
 
@@ -28,7 +28,7 @@ spec_result_get_query <- list(
       query <- "SELECT 1 as a, 2 as b, 3 as c"
 
       rows <- dbGetQuery(con, query)
-      expect_identical(rows, data.frame(a=1L, b=2L, c=3L))
+      expect_equal(rows, data.frame(a=1L, b=2L, c=3L))
     })
   },
 
@@ -95,7 +95,7 @@ spec_result_get_query <- list(
       query <- "SELECT 1 as a"
       expect_error(dbGetQuery(con, query, NA_integer_))
       rows <- dbGetQuery(con, query)
-      expect_identical(rows, data.frame(a = 1L))
+      expect_equal(rows, data.frame(a = 1L))
     })
   },
 
@@ -117,7 +117,7 @@ spec_result_get_query <- list(
         .ctx = ctx, paste("SELECT", 1:3, "AS a"), .order_by = "a")
 
       rows <- dbGetQuery(con, query)
-      expect_identical(rows, data.frame(a = 1:3))
+      expect_equal(rows, data.frame(a = 1:3))
     })
   },
 
@@ -128,7 +128,7 @@ spec_result_get_query <- list(
         .ctx = ctx, paste("SELECT", 1:5, "AS a,", 4:0, "AS b"), .order_by = "a")
 
       rows <- dbGetQuery(con, query)
-      expect_identical(rows, data.frame(a = 1:5, b = 4:0))
+      expect_equal(rows, data.frame(a = 1:5, b = 4:0))
     })
   },
 
@@ -140,7 +140,7 @@ spec_result_get_query <- list(
         .ctx = ctx, paste("SELECT", 1:3, "AS a"), .order_by = "a")
 
       rows <- dbGetQuery(con, query, n = Inf)
-      expect_identical(rows, data.frame(a = 1:3))
+      expect_equal(rows, data.frame(a = 1:3))
     })
   },
 
@@ -152,7 +152,7 @@ spec_result_get_query <- list(
         .ctx = ctx, paste("SELECT", 1:3, "AS a"), .order_by = "a")
 
       expect_warning(rows <- dbGetQuery(con, query, n = 5L), NA)
-      expect_identical(rows, data.frame(a = 1:3))
+      expect_equal(rows, data.frame(a = 1:3))
     })
   },
 
@@ -164,7 +164,7 @@ spec_result_get_query <- list(
         .ctx = ctx, paste("SELECT", 1:3, "AS a"), .order_by = "a")
 
       expect_warning(rows <- dbGetQuery(con, query, n = 0L), NA)
-      expect_identical(rows, data.frame(a=integer()))
+      expect_equal(rows, data.frame(a=integer()))
     })
   },
 
@@ -176,7 +176,7 @@ spec_result_get_query <- list(
         .ctx = ctx, paste("SELECT", 1:3, "AS a"), .order_by = "a")
 
       rows <- dbGetQuery(con, query, n = 2L)
-      expect_identical(rows, data.frame(a = 1:2))
+      expect_equal(rows, data.frame(a = 1:2))
     })
   },
 
